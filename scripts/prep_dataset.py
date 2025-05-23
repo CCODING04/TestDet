@@ -11,10 +11,17 @@ def main():
     data_dir = sys.argv[1].strip()
     image_dir = os.path.join(data_dir, "images")
     label_dir = os.path.join(data_dir, "labels")
+    if os.path.exists(label_dir):
+        print('labels already exist!')
+        exit(0)
+    else:
+        os.makedirs(label_dir)
     mask_dir = os.path.join(data_dir, "masks")
     image_path_list = glob.glob(os.path.join(image_dir, "*.jpg"))
     with Progress() as progress:
         progress.add_task('generate data info ...', len(image_path_list))
+        
+
 
 
 if __name__ == "__main__":
